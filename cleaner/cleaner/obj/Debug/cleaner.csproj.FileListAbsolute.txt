@@ -1,0 +1,9 @@
+D:\ite koodattu cleaner\cleaner\cleaner\bin\Debug\cleaner.exe.config
+D:\ite koodattu cleaner\cleaner\cleaner\obj\Debug\cleaner.csprojResolveAssemblyReference.cache
+D:\ite koodattu cleaner\cleaner\cleaner\obj\Debug\cleaner.Form1.resources
+D:\ite koodattu cleaner\cleaner\cleaner\obj\Debug\cleaner.Properties.Resources.resources
+D:\ite koodattu cleaner\cleaner\cleaner\obj\Debug\cleaner.csproj.GenerateResource.Cache
+D:\ite koodattu cleaner\cleaner\cleaner\bin\Debug\cleaner.exe
+D:\ite koodattu cleaner\cleaner\cleaner\bin\Debug\cleaner.pdb
+D:\ite koodattu cleaner\cleaner\cleaner\obj\Debug\cleaner.exe
+D:\ite koodattu cleaner\cleaner\cleaner\obj\Debug\cleaner.pdb
