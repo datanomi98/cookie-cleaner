@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Diagnostics;
 
 namespace cleaner
 {
@@ -25,11 +26,9 @@ namespace cleaner
         //    treeView.Nodes.Clear();
         //    var rootdirinfo = new DirectoryInfo(path);
         //    treeView.Nodes.Add(createDirectoryNode(rootdirinfo));
-
         //}
         //private static TreeNode createDirectoryNode(DirectoryInfo dirinfo)
-        //{
-        //    var directoryNode = new TreeNode(dirinfo.Name);
+        //{        //    var directoryNode = new TreeNode(dirinfo.Name);
         //    foreach (var directory in dirinfo.GetDirectories())
 
         //        directoryNode.Nodes.Add(createDirectoryNode(directory));
@@ -43,50 +42,66 @@ namespace cleaner
         private void button1_Click(object sender, EventArgs e)
         {
 
+            Process[] pname = Process.GetProcessesByName("firefox");
+            if (pname.Length == 0)
+            {
 
+            }
+
+            else
+            {
+                MessageBox.Show("Please close firefox");
+            }
+                
             //ListDirectory(treeView1, @"C:\");
 
 
             //this code is working
 
             //only get dirs which name contains firefox string
-            string[] dirs = Directory.GetDirectories(@"D:\", "firefox*");
-            //loop throught D: drive
+            string[] dirs = Directory.GetDirectories(@"C:\Users\Nörtti\AppData\Roaming\Mozilla", "Firefox*");
+            //loop throught C: drive
+            //string[] dirs = Directory.GetDirectories(@"D:\", "firefox*");
             foreach (string subdir in dirs)
             {
+                richTextBox1.Controls.Clear();
                 //load function which checks the sub folders
+
                 loadsubDirs(subdir);
             }
         }
-                
-               
-               
 
 
-            
-                private void loadsubDirs(string dir)
+
+
+
+
+        private void loadsubDirs(string dir)
         {
 
             string[] subdirectoryEntries = Directory.GetDirectories(dir);
             var files = new DirectoryInfo(dir).GetFiles("*");
             //loop throught files.
+            //problem: i can't acces all the files in C: drive
             foreach (var filename in files)
             {
 
-                if (filename.ToString().Contains("AccessibleMarshal.dll"))
+
+                //occur only if filename is equal to cookies.sqlite
+
+                if (filename.ToString() == "cookies.sqlite")
                 {
-                    richTextBox1.Controls.Clear();
-                    richTextBox1.Text += "\n" + dir + "\n" + filename.ToString();
+                    
+                    //richTextBox1.Controls.Clear();
+                    richTextBox1.Text += dir + "/" + filename;
                 }
+                    
+                   
+                
 
-
-
-
-
-            }
-
-
-
+                   
+                
+                }
 
 
             foreach (string subdirectory in subdirectoryEntries)
@@ -97,9 +112,27 @@ namespace cleaner
 
             }
 
-        }
 
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string file = richTextBox1.Text;
+                //string result = Path.GetFileName(file);
+                //richTextBox1.Text += result;
+                File.Delete(file);
+                richTextBox1.Text += "Onnistui/succeed";
+            }
+            catch(Exception kek)
+            {
+                richTextBox1.Text += "error " + kek.Message;
+            }
+           
+        }
+    }
+
     }
 
 
